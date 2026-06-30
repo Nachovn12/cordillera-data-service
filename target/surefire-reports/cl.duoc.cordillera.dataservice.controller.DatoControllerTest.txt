@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cl.duoc.cordillera.dataservice.controller.DatoControllerTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.92 s -- in cl.duoc.cordillera.dataservice.controller.DatoControllerTest

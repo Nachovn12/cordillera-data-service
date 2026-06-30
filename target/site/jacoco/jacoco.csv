@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+data-service,cl.duoc.cordillera.dataservice,DataServiceApplication,0,8,0,0,0,3,0,2,0,2
+data-service,cl.duoc.cordillera.dataservice.controller,DatoController,0,51,0,0,0,11,0,8,0,8
+data-service,cl.duoc.cordillera.dataservice.model,Dato,0,4,0,0,0,2,0,1,0,1
+data-service,cl.duoc.cordillera.dataservice.service,DatoService,0,76,0,0,0,18,0,9,0,9
+data-service,cl.duoc.cordillera.dataservice.exception,GlobalExceptionHandler,0,32,0,0,0,11,0,4,0,4
+data-service,cl.duoc.cordillera.dataservice.config,DataLoader,0,293,0,2,0,25,0,3,0,2
+data-service,cl.duoc.cordillera.dataservice.config,OpenApiConfig,0,3,0,0,0,1,0,1,0,1

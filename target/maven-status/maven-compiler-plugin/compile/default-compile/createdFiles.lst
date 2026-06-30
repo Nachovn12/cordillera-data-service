@@ -1,0 +1,8 @@
+cl\duoc\cordillera\dataservice\config\DataLoader.class
+cl\duoc\cordillera\dataservice\controller\DatoController.class
+cl\duoc\cordillera\dataservice\repository\DatoRepository.class
+cl\duoc\cordillera\dataservice\config\OpenApiConfig.class
+cl\duoc\cordillera\dataservice\DataServiceApplication.class
+cl\duoc\cordillera\dataservice\exception\GlobalExceptionHandler.class
+cl\duoc\cordillera\dataservice\model\Dato.class
+cl\duoc\cordillera\dataservice\service\DatoService.class
