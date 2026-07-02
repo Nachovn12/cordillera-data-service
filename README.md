@@ -100,13 +100,13 @@ sucursalId
 
 | Método | Endpoint                      | Descripción                          |
 | ------ | ----------------------------- | ------------------------------------ |
-| GET    | `/api/datos`                  | Lista todos los datos operacionales. |
-| POST   | `/api/datos`                  | Registra un nuevo dato operacional.  |
-| GET    | `/api/datos/{id}`             | Consulta un dato por ID.             |
-| PUT    | `/api/datos/{id}`             | Actualiza un dato.                   |
-| DELETE | `/api/datos/{id}`             | Elimina un dato.                     |
-| GET    | `/api/datos/sistema/{origen}` | Filtra datos por sistema origen.     |
-| GET    | `/api/datos/sucursal/{id}`    | Filtra datos por sucursal.           |
+| GET    | `/api/v1/datos`                  | Lista todos los datos operacionales. |
+| POST   | `/api/v1/datos`                  | Registra un nuevo dato operacional.  |
+| GET    | `/api/v1/datos/{id}`             | Consulta un dato por ID.             |
+| PUT    | `/api/v1/datos/{id}`             | Actualiza un dato.                   |
+| DELETE | `/api/v1/datos/{id}`             | Elimina un dato.                     |
+| GET    | `/api/v1/datos/sistema/{origen}` | Filtra datos por sistema origen.     |
+| GET    | `/api/v1/datos/sucursal/{id}`    | Filtra datos por sucursal.           |
 
 ## 11. Ejecución local
 
@@ -143,9 +143,9 @@ Las pruebas usan H2 en memoria mediante `src/test/resources/application.properti
 ## 14. Pruebas manuales
 
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8083/api/datos" -Method Get
-Invoke-RestMethod -Uri "http://localhost:8083/api/datos/sistema/POS" -Method Get
-Invoke-RestMethod -Uri "http://localhost:8083/api/datos/sucursal/1" -Method Get
+Invoke-RestMethod -Uri "http://localhost:8083/api/v1/datos" -Method Get
+Invoke-RestMethod -Uri "http://localhost:8083/api/v1/datos/sistema/POS" -Method Get
+Invoke-RestMethod -Uri "http://localhost:8083/api/v1/datos/sucursal/1" -Method Get
 ```
 
 ## 15. Diagramas
@@ -179,7 +179,7 @@ Criterios de aceptación relacionados:
 - Existe entidad `Dato` con campos `id`, `sistemaOrigen`, `tipoDato`, `valor`, `fechaRegistro` y `sucursalId`.
 - Existe `DatoRepository` extendiendo `JpaRepository`.
 - Existe `DatoService` con lógica CRUD.
-- Existe `DatoController` exponiendo endpoints `/api/datos`.
+- Existe `DatoController` exponiendo endpoints `/api/v1/datos`.
 - Funcionan operaciones `GET`, `POST`, `PUT` y `DELETE`.
 
 **CORD-26 - HU-DATA-02 Filtros por sistema y sucursal**
@@ -190,8 +190,8 @@ Historia de usuario:
 
 Criterios de aceptación relacionados:
 
-- Funciona `GET /api/datos/sistema/{origen}`.
-- Funciona `GET /api/datos/sucursal/{id}`.
+- Funciona `GET /api/v1/datos/sistema/{origen}`.
+- Funciona `GET /api/v1/datos/sucursal/{id}`.
 - `DatoRepository` implementa `findBySistemaOrigen`.
 - `DatoRepository` implementa `findBySucursalId`.
 - La respuesta JSON es correcta para filtros usados por KPI Service.
@@ -201,7 +201,7 @@ Estas historias permiten vincular la implementación técnica de Data Service co
 ## 17. Evidencias relacionadas
 
 - Servicio operativo en `http://localhost:8083`.
-- Endpoint `/api/datos` validado.
+- Endpoint `/api/v1/datos` validado.
 - Datos semilla cargados mediante `DataLoader` cuando la tabla está vacía.
 - Persistencia independiente en `data_db`.
 - Consumo interno desde KPI Service y BFF Gateway.
