@@ -42,7 +42,7 @@ class DatoControllerTest {
         when(datoService.crear(any())).thenReturn(datoConId);
 
         // Act & Assert
-        mockMvc.perform(post("/api/datos")
+        mockMvc.perform(post("/api/v1/datos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dato)))
             .andExpect(status().isCreated())
@@ -59,7 +59,7 @@ class DatoControllerTest {
         // sucursalId = null → debe fallar @NotNull
 
         // Act & Assert
-        mockMvc.perform(post("/api/datos")
+        mockMvc.perform(post("/api/v1/datos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dato)))
             .andExpect(status().isBadRequest());
@@ -74,7 +74,7 @@ class DatoControllerTest {
         when(datoService.listarTodos()).thenReturn(List.of(d));
 
         // Act & Assert
-        mockMvc.perform(get("/api/datos"))
+        mockMvc.perform(get("/api/v1/datos"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$").isArray());
     }
@@ -93,7 +93,7 @@ class DatoControllerTest {
         when(datoService.buscarPorSistemaOrigen("SAP")).thenReturn(List.of(d1, d2));
 
         // Act & Assert
-        mockMvc.perform(get("/api/datos/sistema/SAP"))
+        mockMvc.perform(get("/api/v1/datos/sistema/SAP"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.length()").value(2));
     }
@@ -107,7 +107,7 @@ class DatoControllerTest {
         when(datoService.buscarPorSucursalId(1L)).thenReturn(List.of(d));
 
         // Act & Assert
-        mockMvc.perform(get("/api/datos/sucursal/1"))
+        mockMvc.perform(get("/api/v1/datos/sucursal/1"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$").isArray());
     }
@@ -118,7 +118,7 @@ class DatoControllerTest {
         when(datoService.buscarPorSistemaOrigen("CRM")).thenReturn(List.of());
 
         // Act & Assert
-        mockMvc.perform(get("/api/datos/sistema/CRM"))
+        mockMvc.perform(get("/api/v1/datos/sistema/CRM"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$").isArray())
             .andExpect(jsonPath("$.length()").value(0));
@@ -134,7 +134,7 @@ class DatoControllerTest {
         when(datoService.buscarPorId(1L)).thenReturn(dato);
 
         // Act & Assert
-        mockMvc.perform(get("/api/datos/1"))
+        mockMvc.perform(get("/api/v1/datos/1"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id").value(1))
             .andExpect(jsonPath("$.sistemaOrigen").value("POS"));
@@ -159,7 +159,7 @@ class DatoControllerTest {
         when(datoService.actualizar(eq(1L), any(Dato.class))).thenReturn(datoActualizado);
 
         // Act & Assert
-        mockMvc.perform(put("/api/datos/1")
+        mockMvc.perform(put("/api/v1/datos/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dato)))
             .andExpect(status().isOk())
@@ -176,7 +176,7 @@ class DatoControllerTest {
         dato.setSucursalId(1L);
 
         // Act & Assert
-        mockMvc.perform(put("/api/datos/1")
+        mockMvc.perform(put("/api/v1/datos/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dato)))
             .andExpect(status().isBadRequest());
@@ -199,8 +199,8 @@ class DatoControllerTest {
         when(datoService.actualizar(eq(1L), any())).thenReturn(actualizado);
 
         // Act & Assert
-        // NOTA: ruta interna es /api/datos/{id}, NO /api/v1/datos/{id}
-        mockMvc.perform(put("/api/datos/1")
+        // NOTA: ruta interna es /api/v1/datos/{id}, NO /api/v1/datos/{id}
+        mockMvc.perform(put("/api/v1/datos/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(datos)))
             .andExpect(status().isOk())
@@ -213,7 +213,7 @@ class DatoControllerTest {
         when(datoService.actualizar(eq(9999L), any()))
             .thenThrow(new NoSuchElementException("Dato no encontrado"));
         // Act & Assert
-        mockMvc.perform(put("/api/datos/9999")
+        mockMvc.perform(put("/api/v1/datos/9999")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(datoValido)))
             .andExpect(status().isNotFound());
@@ -226,7 +226,7 @@ class DatoControllerTest {
 
         // Act & Assert
         // El estándar REST para DELETE exitoso es 204 No Content sin body
-        mockMvc.perform(delete("/api/datos/1"))
+        mockMvc.perform(delete("/api/v1/datos/1"))
             .andExpect(status().isNoContent());
     }
 
@@ -238,7 +238,7 @@ class DatoControllerTest {
             .when(datoService).eliminar(9999L);
 
         // Act & Assert
-        mockMvc.perform(delete("/api/datos/9999"))
+        mockMvc.perform(delete("/api/v1/datos/9999"))
             .andExpect(status().isNotFound());
     }
 }

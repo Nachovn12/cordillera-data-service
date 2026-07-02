@@ -20,7 +20,7 @@ import java.util.List;
 
 @Tag(name = "Datos", description = "CRUD de datos operacionales por sucursal y sistema de origen")
 @RestController
-@RequestMapping("/api/datos")
+@RequestMapping("/api/v1/datos")
 public class DatoController {
 
     private final DatoService datoService;
